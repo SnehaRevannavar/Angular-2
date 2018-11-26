@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    {{pageTitle}}
+  </div>
+  <div class="panel-body">
+    <div class="panel-body">
+      <div>
+        <input type="text" class="form-control" [(ngModel)]="filterBy" placeholder="Filter products"/>
+        <div class="alert alert-success" *ngIf="filterBy">{{filterBy}}</div>
+      </div>
+    </div>
+    <table class="table table-bordered" *ngIf="products && products.length">
+      <tr>
+        <th>
+          <button class="btn btn-primary" (click)="toggleImage()">{{showHideImage ? 'Hide Image' : 'Show Image'}}</button>
+        </th>
+        <th>Product Name</th>
+        <th>Product Code</th>
+        <th>Price</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let product of products | products:filterBy">
+        <td>
+          <img *ngIf = "showHideImage" src="{{product.imageUrl}}" style="width:50px;"/>
+        </td>
+        <td>{{product.productName}}</td>
+        <td>{{product.productCode}}</td>
+        <td>{{product.price}}</td>
+        <td>
+          <!-- {{product.starRating}} -->
+          <app-rating [rating]="product.starRating" (ratingEvent)="ratingParentFn($event)"></app-rating>
+        </td>
+        <!--we are routing to the details component for the specific product, for clarity see the path property for details component in app.module.ts-->
+        <td><button [routerLink]="['/products',product.productId]" >View Details</button> </td>
+        
+      </tr>
+    </table>
+  </div>
+</div>

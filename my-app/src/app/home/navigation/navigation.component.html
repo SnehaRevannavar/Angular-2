@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+       <a class="navbar-brand" href="#">Angular 2</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          
+          <li><a href="#" [routerLink]="['/home']" *ngIf="checkLogin()">Home</a></li>
+          <li><a href="#" [routerLink]="['/login']" *ngIf="!checkLogin()">Login</a></li>
+          <li><a href="#" [routerLink]="['/products']" *ngIf="checkLogin()">Products</a></li>
+          <li><a href="#" (click)="logout()" *ngIf="checkLogin()">Logout</a></li>
+          
+        </ul>
+        
+        
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
